@@ -1,0 +1,545 @@
+/* ===== Base ===== */
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #5b4827;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+h2 {
+    color: #023142;
+    font-size: 32px;
+    font: bolder;
+    text-decoration: underline;
+    margin-bottom: 0.5;
+}
+
+/* ===== Navigation / Tabs ===== */
+nav {
+    display: flex;
+    gap: 12px;
+    padding: 12px 30px 0;
+    align-items: flex-end;
+}
+
+/* Folder tabs */
+.folder-tab {
+    flex: 1;                     
+    height: 36px;
+    position: relative;
+
+    background-color: #dcb572;
+    color: #46505c;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2;
+    user-select: none;
+}
+
+
+.folder-tab.selected,
+.folder-tab:hover {
+    background-color: #edcd95;
+    color: #1f262f;
+    z-index: 3;
+}
+
+
+.folder-tab.selected::before,
+.folder-tab:hover::before,
+.folder-tab.selected::after,
+.folder-tab:hover::after {
+    background-color: #edcd95;
+}
+
+/* Left folded edge */
+.folder-tab::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -20px;
+
+    width: 30px;
+    height: 36px;
+    background-color: #dcb572;
+    border-radius: 10px 10px 0 0;
+
+    transform: skewX(-20deg);
+    z-index: -1;
+}
+
+/* Right folded edge */
+.folder-tab::after {
+    content: "";
+    position: absolute;
+
+    right: -20px;
+
+    width: 30px;
+    height: 36px;
+    background-color: #dcb572;
+    border-radius: 10px 10px 0 0;
+
+    transform: skewX(20deg);
+    z-index: -1;
+}
+
+
+/* ===== Page Content ===== */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* tabs */
+nav {
+  display: flex;
+  gap: 12px;
+  padding: 12px 30px 0;
+  align-items: flex-end;
+  flex: 0 0 auto;
+}
+
+
+.folder-tab {
+  flex: 1;
+  height: 36px;
+  position: relative; 
+}
+
+/* pages */
+.page {
+  flex: 1;              
+  display: none;
+  background-color: #edcd95;
+  border-radius: 6px;
+  padding: 20px 30px;
+  overflow: hidden;        
+}
+
+/* active page uses flex */
+.page.selected {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+
+/* content container inside page */
+.page-content {
+  width: min(900px, 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  gap: 16px;
+  padding-top: 50px;
+}
+.page#3 .page-content {
+    margin-top: 10%;
+}
+
+
+/* expense type form positioning */
+#exp-form {
+    margin-top: -6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* button styling */
+.button {
+    font-size: x-large;
+    color: #d5d5d5;
+    background-color: #023142;
+    border-style: solid;
+    border: #023142;
+    border-radius: 15px;
+    padding: 1%;
+    margin-bottom: 2%;
+}
+.button:hover {
+    color: #eff3f4;
+    background-color: #18576d;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+.button#exp-submit {
+    font-size: x-small;
+    padding: 2%;
+    width: 50%;
+}
+.button#back {
+    font-size: small;
+    margin-bottom: 1%;   
+}
+
+/* input bar styling */
+.input {
+    text-align: center;
+    color: #d5d5d5;
+    font-size: large;
+    width: 45%;
+    border: 5px solid #023142;
+    border-radius: 15px;
+    background-color: #18576d;
+    padding: 1%;
+}
+.input::placeholder {
+    font-size: large;
+    color: #b3b3b3;
+}
+.input:focus{
+    outline: #18576d;
+    background-color: #30748d;
+    transition-duration: 0.3s;
+}
+.input#daily-exp {
+    width: 50%;
+    font-size: small;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.input#revenue-inp {
+    width: 25%;
+}
+.input#daily-exp::placeholder {
+    font-size: small;
+}
+.input#expense-ammount {
+    display: none;
+}
+.input#expense-ammount.active {
+    display: initial;
+}
+
+.expense {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dropDown {
+    font-size: x-small;
+    color: #cbd6da;
+    background-color: #18576d;
+    border: 5px solid #023142;
+    border-radius: 15px;
+    cursor: pointer;
+    padding: 0.5%;
+}
+.dropDown:hover {
+    color: #eff3f4;
+    background-color: #247390;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+.dropDown#expense-repeat {
+    width: 30%;
+    text-align: center;
+}
+
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.table-wrap {
+    border: 5px solid #023142;
+    border-radius: 20px;
+    overflow-y: auto;
+    margin-bottom: 2%;
+ 
+    width: 100%;
+    max-height: 35%;
+    max-width: 900px;
+}
+.table-wrap#e-t-wrap {
+    border: 5px solid #023142;
+    border-radius: 20px;
+    overflow-y: auto;
+    margin-bottom: 2%;
+ 
+    width: 100%;
+    max-height: 18%;
+    max-width: 900px;
+}
+.table-wrap#e-t-wrap-2 {
+    border: 5px solid #023142;
+    border-radius: 20px;
+    overflow-y: auto;
+    margin-bottom: 2%;
+ 
+    width: 100%;
+    max-height: 18%;
+    max-width: 900px;
+}
+.table-wrap#manual-entries {
+    border: 5px solid #023142;
+    border-radius: 20px;
+    overflow-y: auto;
+    margin-bottom: 2%;
+ 
+    width: 100%;
+    max-height: 25%;
+    max-width: 900px;
+}
+.table-wrap::-webkit-scrollbar {
+    width: 12px;                 
+}
+
+.table-wrap::-webkit-scrollbar-track {
+    background: #18576d;         
+    border-radius: 0px 500px 500px 0px;
+}
+
+.table-wrap::-webkit-scrollbar-thumb {
+    background: #edcd95;         
+    border-radius: 500px;
+    border: 2px solid #10475b;    
+}
+
+.table-wrap::-webkit-scrollbar-thumb:hover {
+    background: #b79760;         
+}
+.data-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    text-align: center;
+    background-color: #18576d;
+}
+.data-table tbody {
+    text-align: center;
+    background-color: #247390;
+}
+#revenue-table tr.data:hover {
+    cursor: pointer;
+    background-color: #458ca5;
+    transition-duration: 0.2s;
+}
+.delete-btn {
+    background-color: #edcd95;
+    border: 3px solid #023142;
+    border-radius: 15px;
+}
+.delete-btn:hover {
+    cursor: pointer;
+    background-color: #c03e0e;
+    border: 3px solid #ccad78;
+    border-radius: 15px;
+    transition-duration: 0.2s;
+}
+
+/* Analytics DropDown */
+#analyticsDropD {
+    margin-bottom: 2%;
+}
+
+#dateLabel {
+    text-align: center;
+    color: #023142;
+    font-weight: bold;
+    font-size: large;
+    margin-top: -1%;
+    margin-bottom: -1%;
+}
+#datePick{
+    padding: 8px 10px;
+    border: 2px solid #023142;
+    border-radius: 12px;
+    background: transparent;
+    color: #023142;
+    font-size: 14px;
+    outline: none;
+}
+#datePick:focus{
+    box-shadow: 0 0 0 3px rgba(2,49,66,0.25);
+}
+#datePick{
+    color-scheme: dark;
+}
+#datePick::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* confirmation popup logic */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 49, 66, 0.55);  
+  z-index: 999;
+}
+
+
+#confirm-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(420px, 92vw);
+  padding: 18px 20px;
+
+  background: #edcd95;
+  border: 5px solid #023142;
+  border-radius: 20px;
+
+  z-index: 1000;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+
+#confirm-popup p {
+  margin: 0;
+  text-align: center;
+  color: #023142;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+#confirm-popup .popup-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+
+#confirm-popup .popup-actions button {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 15px;
+
+  border: 3px solid #023142;
+  background-color: #023142;
+  color: #d5d5d5;
+
+  font-weight: bold;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+
+#confirm-popup .popup-actions button:hover {
+  background-color: #18576d;
+  color: #eff3f4;
+}
+
+
+#confirm-yes {
+  background-color: #c03e0e;
+  border-color: #023142;
+  color: #eff3f4;
+}
+
+#confirm-yes:hover {
+  background-color: #a9340c; 
+  border-color: #ccad78;     
+}
+
+
+#confirm-cancel {
+  background-color: #023142;
+}
+
+
+.hidden {
+  display: none !important;
+}
+
+
+/*  Analytics Top Bar Layout */
+.analytics-topbar{
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.analytics-topbar #back{
+  flex: 0 0 auto;
+}
+
+#total-revenue-wrap{
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+#total-expense-wrap{
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mini-table-wrap{
+  border: 5px solid #023142;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: #247390;
+  min-width: 200px;
+}
+
+.mini-table{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.mini-table th{
+  padding: 8px 10px;
+  font-weight: bold;
+}
+
+#revenue-table-mini thead{
+  background-color: #18576d;
+  color: #00d684;
+  text-align: center;
+}
+#expense-table thead{
+  background-color: #18576d;
+  color: #d25009;
+  text-align: center;
+}
+
+#revenue-table-mini tbody{
+  background-color: #247390;
+  color: #00d684;
+  text-align: center;
+}
+#expense-table tbody{
+  background-color: #247390;
+  color: #d25009;
+  text-align: center;
+}
+
+.mini-table td{
+  padding: 10px 12px;
+  font-weight: bold;
+}
+
+
+
+
